@@ -16,6 +16,35 @@
 const pool = require('../configs/db');
 const shortId = require('shortid');
 
+/*-------------------------------- 
+async function name() {
+  let client = await pool.connect();
+  try {
+
+  } catch (error) {
+    client.release();
+    throw new Error('adding service failed');
+  } finally {
+    client.release();
+  }
+}
+-----------------------------------*/
+
+async function getServices() {
+  let client = await pool.connect();
+  try {
+    let sql =
+      'SELECT service_id , service_name , service_desc WHERE isAvailable=true';
+    let query = await client.query(sql);
+    return query.rows;
+  } catch (error) {
+    client.release();
+    throw new Error('adding service failed');
+  } finally {
+    client.release();
+  }
+}
+
 async function createService(name, desc) {
   let client = await pool.connect();
   try {
@@ -32,4 +61,4 @@ async function createService(name, desc) {
   }
 }
 
-module.exports = { createService };
+module.exports = { getServices, createService };
