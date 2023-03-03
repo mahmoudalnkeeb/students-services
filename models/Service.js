@@ -25,8 +25,10 @@ async function createService(name, desc) {
     let query = await client.query(sql, [id, name, desc]);
     return query.rows[0];
   } catch (error) {
+    client.release();
     throw new Error('adding service failed');
   } finally {
+    client.release();
   }
 }
 
