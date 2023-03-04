@@ -56,8 +56,8 @@ async function getOneService(req, res, next) {
 
 async function createService(req, res, next) {
   try {
-    let { name, desc } = req.body;
-    let service = await services.createService(name, desc);
+    let { name, desc, imagePath } = req.body;
+    let service = await services.createService(name, desc, imagePath);
     res.status(201).json(service);
   } catch (error) {
     next(error);
@@ -73,9 +73,15 @@ async function createService(req, res, next) {
 
 async function updateService(req, res, next) {
   try {
-    let { name, desc } = req.body;
+    let { name, desc, imagePath, isAvailable } = req.body;
     let { id } = req.params;
-    let service = await services.updateService(id, name, desc);
+    let service = await services.updateService(
+      id,
+      name,
+      desc,
+      imagePath,
+      isAvailable
+    );
     res.status(200).json(service);
   } catch (error) {
     next(error);

@@ -7,7 +7,7 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "start": "node server.js",
+    "start": "node server.js 1> ./logs/logger.out 2> ./logs/crash.out",
     "dev-windows": "SET ENV=dev&& nodemon server.js",
     "dev-linux": "export ENV=dev&& nodemon server.js"
   },
@@ -17,6 +17,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
+    "mime-types": "^2.1.35",
     "morgan": "^1.10.0",
     "multer": "^1.4.5-lts.1",
     "pg": "^8.9.0",

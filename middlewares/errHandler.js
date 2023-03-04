@@ -1,3 +1,8 @@
+const fs = require('fs');
+
 module.exports = function errHandler(err, req, res, next) {
-  if (err) return res.status(200).send('internal server error');
+  if (err) {
+    fs.createWriteStream('../logs/errors.log');
+    return res.status(500).send('internal server error');
+  }
 };

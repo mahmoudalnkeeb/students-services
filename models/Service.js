@@ -15,6 +15,7 @@
 
 const pool = require('../configs/db');
 const shortId = require('shortid');
+const deleteFile = require('../utils/deleteFile');
 
 /*-------------------------------- 
 async function name() {
@@ -34,7 +35,7 @@ async function getServices() {
   let client = await pool.connect();
   try {
     let sql =
-      'SELECT service_id , service_name , service_desc WHERE isAvailable=true';
+      'SELECT service_id , service_name , service_desc , service_image WHERE isAvailable=true';
     let query = await client.query(sql);
     return query.rows;
   } catch (error) {
@@ -48,7 +49,8 @@ async function getServices() {
 async function getOneService(id) {
   let client = await pool.connect();
   try {
-    let sql = 'SELECT service_id , service_name , service_desc WHERE id=$1';
+    let sql =
+      'SELECT service_id , service_name , service_desc , service_image WHERE id=$1';
     let query = await client.query(sql, [id]);
     return query.rows[0];
   } catch (error) {
@@ -59,13 +61,13 @@ async function getOneService(id) {
   }
 }
 
-async function createService(name, desc) {
+async function createService(name, desc, imagePath) {
   let client = await pool.connect();
   try {
     let id = shortId.generate();
     let sql =
-      'INSERT INTO services(service_id , service_name , service_desc) VALUES($1 , $2 , $3)';
-    let query = await client.query(sql, [id, name, desc]);
+      'INSERT INTO services(service_id , service_name , service_desc , service_image) VALUES($1 , $2 , $3 , $4)';
+    let query = await client.query(sql, [id, name, desc, imagePath]);
     return query.rows[0];
   } catch (error) {
     client.release();
@@ -75,16 +77,29 @@ async function createService(name, desc) {
   }
 }
 
-async function updateService(id, name = null, desc = null, isAvailable = null) {
+async function updateService(
+  id,
+  name = null,
+  desc = null,
+  imagePath = null,
+  isAvailable = null
+) {
   let client = await pool.connect();
   try {
     let sql = `UPDATE services SET
                   service_name = COALESCE($1, service_name),
                   service_desc = COALESCE($2, service_desc),
-                  isAvailable = COALESCE($3, isAvailable)
+                  service_image = COALESCE($3, service_image)
+                  isAvailable = COALESCE($4, isAvailable),
               WHERE service_id = $4 
-              RETURNING service_id , service_name , service_desc , isAvailable`;
-    let query = await client.query(sql, [id, name, desc, isAvailable]);
+              RETURNING service_id , service_name , service_desc , isAvailable , service_image`;
+    let query = await client.query(sql, [
+      id,
+      name,
+      desc,
+      imagePath,
+      isAvailable,
+    ]);
     return query.rows[0];
   } catch (error) {
     client.release();
@@ -97,8 +112,10 @@ async function updateService(id, name = null, desc = null, isAvailable = null) {
 async function deleteService(id) {
   let client = await pool.connect();
   try {
-    let sql = 'DELETE FROM services WHERE service_id=$1 ';
-    await client.query(sql, [id]);
+    let sql =
+      'DELETE FROM services WHERE service_id=$1 RETURNING service_image ';
+    let imagePath = await client.query(sql, [id]);
+    deleteFile(imagePath);
   } catch (error) {
     client.release();
     throw new Error('deleting service failed ' + error.stack);
