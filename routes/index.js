@@ -10,7 +10,7 @@ router.post('/upload', uploadFile.single('file'), (req, res) => {
   try {
     res.status(200).json({ filePath: req.file.path });
   } catch (error) {
-    res.status(500).send('error occurred when saving file');
+    throw new Error(`error occurred when saving file - ${error.message}`, { cause: error });
   }
 });
 

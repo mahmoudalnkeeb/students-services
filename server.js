@@ -20,4 +20,4 @@ app.use(morgan('dev'));
 app.use(router);
 app.use(errHandler);
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`app running on port ${port}`));

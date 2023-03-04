@@ -1,5 +1,5 @@
 {
-  "name": "express-boilerplate",
+  "name": "najeh-api",
   "version": "1.0.0",
   "main": "server.js",
   "keywords": [],
@@ -7,7 +7,7 @@
   "license": "ISC",
   "description": "",
   "scripts": {
-    "start": "node server.js 1> ./logs/logger.out 2> ./logs/crash.out",
+    "start": "node server.js 1> ./logs/console.log 2> ./logs/crash.log",
     "dev-windows": "SET ENV=dev&& nodemon server.js",
     "dev-linux": "export ENV=dev&& nodemon server.js"
   },

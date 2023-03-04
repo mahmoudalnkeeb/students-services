@@ -24,7 +24,7 @@ async function name() {
 
   } catch (error) {
     client.release();
-    throw new Error('adding service failed ');
+    throw new Error('adding service failed  - ${error.message}');
   } finally {
     client.release();
   }
@@ -40,7 +40,7 @@ async function getServices() {
     return query.rows;
   } catch (error) {
     client.release();
-    throw new Error('get service failed ' + error.stack);
+    throw new Error(`get service failed  - ${error.message}`, { cause: error });
   } finally {
     client.release();
   }
@@ -55,7 +55,7 @@ async function getOneService(id) {
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error('get service failed ' + error.stack);
+    throw new Error(`get service failed  - ${error.message}`, { cause: error });
   } finally {
     client.release();
   }
@@ -71,7 +71,7 @@ async function createService(name, desc, imagePath) {
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error('adding service failed ' + error.stack);
+    throw new Error(`adding service failed  - ${error.message}`, { cause: error });
   } finally {
     client.release();
   }
@@ -103,7 +103,7 @@ async function updateService(
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error('updating service failed ' + error.stack);
+    throw new Error(`updating service failed  - ${error.message}`, { cause: error });
   } finally {
     client.release();
   }
@@ -118,7 +118,7 @@ async function deleteService(id) {
     deleteFile(imagePath);
   } catch (error) {
     client.release();
-    throw new Error('deleting service failed ' + error.stack);
+    throw new Error(`deleting service failed  - ${error.message}`, { cause: error });
   } finally {
     client.release();
   }
