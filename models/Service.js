@@ -87,11 +87,11 @@ async function updateService(
   let client = await pool.connect();
   try {
     let sql = `UPDATE services SET
-                  service_name = COALESCE($1, service_name),
-                  service_desc = COALESCE($2, service_desc),
-                  service_image = COALESCE($3, service_image)
-                  isAvailable = COALESCE($4, isAvailable),
-              WHERE service_id = $4 
+                  service_name = COALESCE($2, service_name),
+                  service_desc = COALESCE($3, service_desc),
+                  service_image = COALESCE($4, service_image)
+                  isAvailable = COALESCE($5, isAvailable),
+              WHERE service_id = $1 
               RETURNING service_id , service_name , service_desc , isAvailable , service_image`;
     let query = await client.query(sql, [
       id,

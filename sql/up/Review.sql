@@ -1,9 +1,13 @@
 CREATE TABLE IF NOT EXISTS reviews(
-    review_id VARCHAR(16) PRIMARY KEY,
-    name VARCHAR(100),
+    review_id VARCHAR(16) PRIMARY KEY UNIQUE NOT NULL,
+    name VARCHAR(100) NOT NULL,
     email VARCHAR(200),
-    rate double precision,
-    review_text TEXT,
-    service_id VARCHAR(16),
-    FOREIGN KEY (service_id) REFERENCES services(service_id)
+    phone VARCHAR(20) NOT NULL,
+    rate double precision NOT NULL,
+    review_text TEXT NOT NULL,
+    service_id VARCHAR(16) NOT NULL,
+    order_id VARCHAR(16) NOT NULL,
+    isAccepted BOOLEAN NOT NULL DEFAULT FALSE,
+    FOREIGN KEY (service_id) REFERENCES services(service_id),
+    FOREIGN KEY (order_id) REFERENCES orders(order_id)
 );
