@@ -16,20 +16,10 @@
 const pool = require('../configs/db');
 const shortId = require('shortid');
 const deleteFile = require('../utils/deleteFile');
+const { isTableExists, migrateTableUp } = require('../utils/migrationUtils');
 
-/*-------------------------------- 
-async function name() {
-  let client = await pool.connect();
-  try {
-
-  } catch (error) {
-    client.release();
-    throw new Error('adding service failed  - ${error.message}');
-  } finally {
-    client.release();
-  }
-}
------------------------------------*/
+if (!isTableExists('services'))
+  migrateTableUp('services').finally((res) => res.client.release());
 
 async function getServices() {
   let client = await pool.connect();
@@ -71,7 +61,9 @@ async function createService(name, desc, imagePath) {
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`adding service failed  - ${error.message}`, { cause: error });
+    throw new Error(`adding service failed  - ${error.message}`, {
+      cause: error,
+    });
   } finally {
     client.release();
   }
@@ -91,6 +83,7 @@ async function updateService(
                   service_desc = COALESCE($3, service_desc),
                   service_image = COALESCE($4, service_image)
                   isAvailable = COALESCE($5, isAvailable),
+                  updated_at = NOW()
               WHERE service_id = $1 
               RETURNING service_id , service_name , service_desc , isAvailable , service_image`;
     let query = await client.query(sql, [
@@ -103,7 +96,9 @@ async function updateService(
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`updating service failed  - ${error.message}`, { cause: error });
+    throw new Error(`updating service failed  - ${error.message}`, {
+      cause: error,
+    });
   } finally {
     client.release();
   }
@@ -118,7 +113,9 @@ async function deleteService(id) {
     deleteFile(imagePath);
   } catch (error) {
     client.release();
-    throw new Error(`deleting service failed  - ${error.message}`, { cause: error });
+    throw new Error(`deleting service failed  - ${error.message}`, {
+      cause: error,
+    });
   } finally {
     client.release();
   }

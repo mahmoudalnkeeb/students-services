@@ -7,6 +7,11 @@ const constants = {
   ),
   COLORS_PATH: path.resolve(path.join(process.cwd(), 'public/colors.json')),
   INFO_PATH: path.resolve(path.join(process.cwd(), 'public/info.json')),
+  SERVICES_IMAGES_PATH: path.resolve(
+    path.join(process.cwd(), 'public/images/services')
+  ),
+  SERVICE_IMAGE_W: 200,
+  SERVICE_IMAGE_H: 100,
 };
 
 module.exports = constants;

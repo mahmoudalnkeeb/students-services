@@ -5,5 +5,8 @@ CREATE TABLE IF NOT EXISTS orders (
     phone VARCHAR(20) NOT NULL,
     isDone BOOLEAN NOT NULL DEFAULT FALSE,
     service_id VARCHAR(16) NOT NULL,
-    FOREIGN KEY (service_id) REFERENCES services(service_id)
+    FOREIGN KEY (service_id) REFERENCES services(service_id) ON DELETE CASCADE,
+    index SERIAL NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );

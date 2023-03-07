@@ -4,13 +4,17 @@ const servicesRouter = require('./services');
 const reviewsRouter = require('./reviews');
 const ordersRouter = require('./orders');
 const uploadFile = require('../utils/uploadFile');
+const serviceImage = require('../utils/sharp');
 
 // upload route
-router.post('/upload', uploadFile.single('file'), (req, res) => {
+router.post('/upload', uploadFile.single('file'), async (req, res) => {
   try {
-    res.status(200).json({ filePath: req.file.path });
+    let path = await serviceImage(req.file);
+    res.status(201).json({ path });
   } catch (error) {
-    throw new Error(`error occurred when saving file - ${error.message}`, { cause: error });
+    throw new Error(`error occurred when saving file - ${error.message}`, {
+      cause: error,
+    });
   }
 });
 

@@ -8,6 +8,9 @@ CREATE TABLE IF NOT EXISTS reviews(
     service_id VARCHAR(16) NOT NULL,
     order_id VARCHAR(16) NOT NULL,
     isAccepted BOOLEAN NOT NULL DEFAULT FALSE,
-    FOREIGN KEY (service_id) REFERENCES services(service_id),
-    FOREIGN KEY (order_id) REFERENCES orders(order_id)
+    FOREIGN KEY (service_id) REFERENCES services(service_id) ON DELETE CASCADE,
+    FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
+    index SERIAL NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT NOW(),
+    updated_at TIMESTAMP NOT NULL DEFAULT NOW()
 );

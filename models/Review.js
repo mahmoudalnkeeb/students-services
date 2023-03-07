@@ -8,29 +8,12 @@
  * service_id FK VARCHAR(16) NOT NULL
  */
 
-//-- TODO LIST --
-// getReviews() [DONE]
-// getOneReview(id) [DONE]
-// createReview(name , email , rate , content , service_id) [DONE]
-// updateReview(id,name , email , rate , content , service_id) [DONE]
-// deleteReview(id) [DONE]
-
 const pool = require('../configs/db');
 const shortId = require('shortid');
+const { isTableExists, migrateTableUp } = require('../utils/migrationUtils');
 
-/*-------------------------------- 
-async function name() {
-  let client = await pool.connect();
-  try {
-
-  } catch (error) {
-    client.release();
-    throw new Error('adding service failed  - ${error.message}');
-  } finally {
-    client.release();
-  }
-}
------------------------------------*/
+if (!isTableExists('reviews'))
+  migrateTableUp('reviews').finally((res) => res.client.release());
 
 async function getReviews() {
   let client = await pool.connect();
@@ -110,7 +93,8 @@ async function updateReview(
                   email = COALESCE($3, email),
                   phone = COALESCE($4, phone)
                   rate = COALESCE($5, rate),
-                  review_text = COALESCE($6, review_text)
+                  review_text = COALESCE($6, review_text),
+                  updated_at = NOW()
               WHERE review_id = $1
               RETURNING review_id , name , email , phone , rate , review_text , isAccepted`;
     let query = await client.query(sql, [
