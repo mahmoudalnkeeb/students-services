@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const appearanceRouter = require('./appearance');
 const servicesRouter = require('./services');
+const sectionsRouter = require('./sections');
 const reviewsRouter = require('./reviews');
 const ordersRouter = require('./orders');
 const uploadFile = require('../utils/uploadFile');
@@ -19,9 +20,10 @@ router.post('/upload', uploadFile.single('file'), async (req, res) => {
 });
 
 //---
+router.use('/', appearanceRouter);
 router.use('/services', servicesRouter);
-router.use('/appearance', appearanceRouter);
-router.use('/reviews', reviewsRouter);
+router.use('/sections', sectionsRouter);
 router.use('/orders', ordersRouter);
+router.use('/reviews', reviewsRouter);
 
 module.exports = router;

@@ -1,5 +1,5 @@
 const { request, response } = require('express');
-const services = require('../models/Service');
+const sections = require('../models/Section');
 
 /*--------------
   @param {request} req
@@ -21,26 +21,26 @@ async function name(req, res, next) {
  * @param {*} next
  */
 
-async function getServices(req, res, next) {
+async function getSections(req, res, next) {
   try {
-    let allServices = await services.getServices();
-    res.status(200).json(allServices);
+    let allSections = await sections.getSections();
+    res.status(200).json(allSections);
   } catch (error) {
     next(error);
   }
 }
+
 /**
  *
  * @param {request} req
  * @param {response} res
  * @param {*} next
  */
-
-async function getServicesPagination(req, res, next) {
+async function getSectionsPagination(req, res, next) {
   try {
     let { page, limit } = req.query;
-    let allServices = await services.getServicesPagination(page, limit);
-    res.status(200).json(allServices);
+    let allSections = await sections.getSectionsPagination(page, limit);
+    res.status(200).json(allSections);
   } catch (error) {
     next(error);
   }
@@ -53,11 +53,11 @@ async function getServicesPagination(req, res, next) {
  * @param {*} next
  */
 
-async function getOneService(req, res, next) {
+async function getOneSection(req, res, next) {
   try {
     let { id } = req.params;
-    let service = await services.getOneService(id);
-    res.status(200).json(service);
+    let section = await sections.getOneSection(id);
+    res.status(200).json(section);
   } catch (error) {
     next(error);
   }
@@ -70,11 +70,11 @@ async function getOneService(req, res, next) {
  * @param {*} next
  */
 
-async function createService(req, res, next) {
+async function createSection(req, res, next) {
   try {
     let { name, desc, imagePath } = req.body;
-    let service = await services.createService(name, desc, imagePath);
-    res.status(201).json(service);
+    let section = await sections.createSection(name, desc, imagePath);
+    res.status(201).json(section);
   } catch (error) {
     next(error);
   }
@@ -87,18 +87,12 @@ async function createService(req, res, next) {
  * @param {*} next
  */
 
-async function updateService(req, res, next) {
+async function updateSection(req, res, next) {
   try {
-    let { name, desc, imagePath, isAvailable } = req.body;
+    let { name, desc, imagePath } = req.body;
     let { id } = req.params;
-    let service = await services.updateService(
-      id,
-      name,
-      desc,
-      imagePath,
-      isAvailable
-    );
-    res.status(200).json(service);
+    let section = await sections.updateSection(id, name, desc, imagePath);
+    res.status(200).json(section);
   } catch (error) {
     next(error);
   }
@@ -110,21 +104,21 @@ async function updateService(req, res, next) {
  * @param {*} next
  */
 
-async function deleteService(req, res, next) {
+async function deleteSection(req, res, next) {
   try {
     let { id } = req.params;
-    let service = await services.deleteService(id);
-    res.status(204).json(service);
+    let section = await sections.deleteSection(id);
+    res.status(204).json(section);
   } catch (error) {
     next(error);
   }
 }
 
 module.exports = {
-  getServices,
-  getServicesPagination,
-  getOneService,
-  createService,
-  updateService,
-  deleteService,
+  getSections,
+  getSectionsPagination,
+  getOneSection,
+  createSection,
+  updateSection,
+  deleteSection,
 };

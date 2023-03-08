@@ -10,8 +10,8 @@ const constants = {
   SERVICES_IMAGES_PATH: path.resolve(
     path.join(process.cwd(), 'public/images/services')
   ),
-  SERVICE_IMAGE_W: 200,
-  SERVICE_IMAGE_H: 100,
+  SERVICE_IMAGE_W: 176,
+  SERVICE_IMAGE_H: 160,
 };
 
 module.exports = constants;

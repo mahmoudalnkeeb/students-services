@@ -11,7 +11,7 @@ async function serviceImage(image) {
     let path = `${SERVICES_IMAGES_PATH}/${image.filename.split('.')[0]}.webp`;
     await sharp(image.path)
       .resize(SERVICE_IMAGE_W, SERVICE_IMAGE_H)
-      .webp()
+      .webp({ quality: 100 })
       .toFile(path);
     deleteFile(image.path);
     return path;

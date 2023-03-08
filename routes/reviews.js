@@ -4,6 +4,7 @@ const router = require('express').Router();
 
 router
   .get('/all', reviewsController.getReviews)
+  .get('/', reviewsController.getReviewsPagination)
   .get('/:id', reviewsController.getOneReview)
   .post('/add', reviewsController.createReview)
   .put('/:id', reviewsController.updateReview)

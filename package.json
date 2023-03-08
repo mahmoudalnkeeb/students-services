@@ -1,19 +1,20 @@
 {
   "name": "najeh-api",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "server.js",
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "scripts": {
-    "start": "node server.js 1> ./logs/console.log 2> ./logs/crash.log",
-    "devwin": "SET ENV=dev&& nodemon server.js",
+    "start": "npm run migrate-up && node server.js 1> ./logs/console.log 2> ./logs/crash.log",
+    "devwin": "SET ENV=dev&&npm run migrate-up-dev && nodemon server.js",
     "devlinux": "export ENV=dev&& nodemon server.js",
-    "migrate-up": "SET ENV=dev&& node ./migrations/migrate_up.js",
-    "migrate-down": "SET ENV=dev&& node ./migrations/migrate_down.js",
+    "migrate-up": "node ./migrations/migrate_up.js",
+    "migrate-down": "node ./migrations/migrate_down.js",
     "migrate-up-dev": "SET ENV=dev&& node ./migrations/migrate_up.js",
-    "migrate-down-dev": "SET ENV=dev&& node ./migrations/migrate_down.js"
+    "migrate-down-dev": "SET ENV=dev&& node ./migrations/migrate_down.js",
+    "fillTemp": "SET ENV=dev&& node ./fillTempData.js"
   },
   "dependencies": {
     "bcrypt": "^5.1.0",

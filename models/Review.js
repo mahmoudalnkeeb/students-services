@@ -10,10 +10,6 @@
 
 const pool = require('../configs/db');
 const shortId = require('shortid');
-const { isTableExists, migrateTableUp } = require('../utils/migrationUtils');
-
-if (!isTableExists('reviews'))
-  migrateTableUp('reviews').finally((res) => res.client.release());
 
 async function getReviews() {
   let client = await pool.connect();
@@ -21,6 +17,22 @@ async function getReviews() {
     let sql =
       'SELECT review_id , name , rate , review_text FROM  reviews WHERE isAccepted=true AND rate >= 4';
     let query = await client.query(sql);
+    return query.rows;
+  } catch (error) {
+    client.release();
+    throw new Error(`get reviews failed  - ${error.message}`);
+  } finally {
+    client.release();
+  }
+}
+
+async function getReviewsPagination(page, limit) {
+  let client = await pool.connect();
+  try {
+    let offset = (page - 1) * limit;
+    let sql =
+      'SELECT review_id , name , rate , review_text FROM reviews WHERE isAccepted=true AND rate >= 4 LIMIT $1 OFFSET $2 ORDER BY index ASC';
+    let query = await client.query(sql, [limit, offset]);
     return query.rows;
   } catch (error) {
     client.release();
@@ -45,19 +57,11 @@ async function getOneReview(id) {
   }
 }
 
-async function createReview(
-  name,
-  email,
-  phone,
-  rate,
-  content,
-  service_id,
-  order_id
-) {
+async function createReview(name, email, phone, rate, content, order_id) {
   let client = await pool.connect();
   try {
     let sql =
-      'INSERT INTO reviews(review_id , name , email , phone , rate , review_text , service_id , order_id) VALUES($1 , $2 , $3 , $4 , $5 , $6 , $7 , $8) RETURNING review_id , name , email , phone , rate , review_text';
+      'INSERT INTO reviews(review_id , name , email , phone , rate , review_text , order_id) VALUES($1 , $2 , $3 , $4 , $5 , $6 , $7 ) RETURNING review_id , name , email , phone , rate , review_text';
     let id = shortId.generate();
     let query = await client.query(sql, [
       id,
@@ -66,7 +70,6 @@ async function createReview(
       phone,
       rate,
       content,
-      service_id,
       order_id,
     ]);
     return query.rows[0];
@@ -148,6 +151,7 @@ async function deleteReview(id) {
 }
 module.exports = {
   getReviews,
+  getReviewsPagination,
   getOneReview,
   createReview,
   updateReview,

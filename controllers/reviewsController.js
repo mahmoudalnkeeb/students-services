@@ -19,6 +19,16 @@ async function getReviews(req, res, next) {
   }
 }
 
+async function getReviewsPagination(req, res, next) {
+  try {
+    let { page, limit } = req.query;
+    let allReviews = await reviews.getReviewsPagination(page, limit);
+    res.status(200).json(allReviews);
+  } catch (error) {
+    next(error);
+  }
+}
+
 async function getOneReview(req, res, next) {
   try {
     let { id } = req.params;
@@ -31,15 +41,13 @@ async function getOneReview(req, res, next) {
 
 async function createReview(req, res, next) {
   try {
-    let { name, email, phone, rate, review_text, service_id, order_id } =
-      req.body;
+    let { name, email, phone, rate, review_text, order_id } = req.body;
     let review = await reviews.createReview(
       name,
       email,
       phone,
       rate,
       review_text,
-      service_id,
       order_id
     );
     res.status(201).json(review);
@@ -90,6 +98,7 @@ async function deleteReview(req, res, next) {
 }
 module.exports = {
   getReviews,
+  getReviewsPagination,
   getOneReview,
   createReview,
   updateReview,

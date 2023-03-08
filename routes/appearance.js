@@ -6,11 +6,14 @@ router
   .get('/logo', appearanceController.getLogo)
   .get('/theme', appearanceController.getTheme)
   .get('/info', appearanceController.getInfo);
+
+// CONTROL PANEL ONLY
 router.post(
   '/logo',
   uploadFile.single('logo'),
   appearanceController.changeLogo
 );
+
 router
   .put('/contact', appearanceController.changeContact)
   .put('/social', appearanceController.changeSocial)

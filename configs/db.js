@@ -9,7 +9,6 @@ let pool = new Pool({
   database: dbName,
   max: 20,
   idleTimeoutMillis: 1000,
-  connectionTimeoutMillis: 1000,
   maxUses: 7500
 });
 
