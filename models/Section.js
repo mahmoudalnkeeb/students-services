@@ -64,7 +64,7 @@ async function getOneSection(id) {
   }
 }
 
-async function createSection(name, desc, imagePath) {
+async function createSection(name, desc, imagePath = 'default') {
   let client = await pool.connect();
   try {
     let id = shortId.generate();

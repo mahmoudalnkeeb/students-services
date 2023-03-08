@@ -64,7 +64,7 @@ async function getOneService(id) {
   }
 }
 
-async function createService(name, desc, imagePath) {
+async function createService(name, desc, imagePath = 'default') {
   let client = await pool.connect();
   try {
     let id = shortId.generate();

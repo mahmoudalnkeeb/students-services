@@ -10,6 +10,10 @@ const constants = {
   SERVICES_IMAGES_PATH: path.resolve(
     path.join(process.cwd(), 'public/images/services')
   ),
+  SECTIONS_IMAGES_PATH: path.resolve(
+    path.join(process.cwd(), 'public/images/sections')
+  ),
+  IMAGES_PATH: path.resolve(path.join(process.cwd(), 'public/images')),
   SERVICE_IMAGE_W: 176,
   SERVICE_IMAGE_H: 160,
 };
