@@ -30,7 +30,6 @@ async function getServices(req, res, next) {
   }
 }
 
-
 /**
  *
  * @param {request} req

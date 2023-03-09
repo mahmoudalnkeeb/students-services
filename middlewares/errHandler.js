@@ -7,10 +7,10 @@ module.exports = function errHandler(err, req, res, next) {
       './logs/errors.log',
       ` [${moment().format(
         'MMMM Do YYYY, h:mm:ss a'
-      )}] ${err}\n ----------------------- \n`
+      )}] ${err.message} \n error stack \n  : ${err.stack} \n -----------------------`
     );
     return res.status(500).json({
-      message: err.message,
+      message: 'internal server error',
       code: err.code || 500,
       cause: err.cause || null,
     });

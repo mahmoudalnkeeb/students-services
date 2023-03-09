@@ -14,7 +14,7 @@ async function name() {
 
   } catch (error) {
     client.release();
-    throw new Error('adding service failed  - ${error.message}');
+    throw new Error('adding service failed  \n ${error}');
   } finally {
     client.release();
   }
@@ -26,18 +26,18 @@ async function getOrders() {
   try {
   } catch (error) {
     client.release();
-    throw new Error('adding service failed  - ${error.message}');
+    throw new Error(`get orders failed  \n ${error}`);
   } finally {
     client.release();
   }
 }
 
-async function getOrdersPagination(page, limit) {
+async function getOrdersPagination(page = 1, limit = 10) {
   let client = await pool.connect();
   try {
   } catch (error) {
     client.release();
-    throw new Error('adding service failed  - ${error.message}');
+    throw new Error(`get orders failed  \n ${error}`);
   } finally {
     client.release();
   }
@@ -48,7 +48,7 @@ async function getoneOrders() {
   try {
   } catch (error) {
     client.release();
-    throw new Error('adding service failed  - ${error.message}');
+    throw new Error(`get order failed  \n ${error}`);
   } finally {
     client.release();
   }
@@ -59,7 +59,7 @@ async function createOrder() {
   try {
   } catch (error) {
     client.release();
-    throw new Error('adding service failed  - ${error.message}');
+    throw new Error(`create order failed  \n ${error}`);
   } finally {
     client.release();
   }
@@ -70,7 +70,7 @@ async function updateOrder() {
   try {
   } catch (error) {
     client.release();
-    throw new Error('adding service failed  - ${error.message}');
+    throw new Error(`update order failed  \n ${error}`);
   } finally {
     client.release();
   }
@@ -81,7 +81,7 @@ async function deleteOrder() {
   try {
   } catch (error) {
     client.release();
-    throw new Error('adding service failed  - ${error.message}');
+    throw new Error(`delete order failed  \n ${error}`);
   } finally {
     client.release();
   }

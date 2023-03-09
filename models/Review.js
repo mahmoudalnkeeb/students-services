@@ -20,23 +20,23 @@ async function getReviews() {
     return query.rows;
   } catch (error) {
     client.release();
-    throw new Error(`get reviews failed  - ${error.message}`);
+    throw new Error(`get reviews failed  \n ${error}`);
   } finally {
     client.release();
   }
 }
 
-async function getReviewsPagination(page, limit) {
+async function getReviewsPagination(page = 1, limit = 10) {
   let client = await pool.connect();
   try {
     let offset = (page - 1) * limit;
     let sql =
-      'SELECT review_id , name , rate , review_text FROM reviews WHERE isAccepted=true AND rate >= 4 LIMIT $1 OFFSET $2 ORDER BY index ASC';
+      'SELECT review_id , name , rate , review_text FROM reviews WHERE isAccepted=true AND rate >= 4 ORDER BY index ASC LIMIT $1 OFFSET $2';
     let query = await client.query(sql, [limit, offset]);
     return query.rows;
   } catch (error) {
     client.release();
-    throw new Error(`get reviews failed  - ${error.message}`);
+    throw new Error(`get reviews failed  \n ${error}`);
   } finally {
     client.release();
   }
@@ -51,7 +51,7 @@ async function getOneReview(id) {
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`get reviews failed  - ${error.message}`);
+    throw new Error(`get reviews failed  \n ${error}`);
   } finally {
     client.release();
   }
@@ -75,7 +75,7 @@ async function createReview(name, email, phone, rate, content, order_id) {
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`get reviews failed  - ${error.message}`);
+    throw new Error(`get reviews failed  \n ${error}`);
   } finally {
     client.release();
   }
@@ -111,7 +111,7 @@ async function updateReview(
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`updating service failed  - ${error.message}`, {
+    throw new Error(`updating service failed  \n ${error}`, {
       cause: error,
     });
   } finally {
@@ -128,7 +128,7 @@ async function acceptReview(id) {
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`updating service failed  - ${error.message}`, {
+    throw new Error(`updating service failed  \n ${error}`, {
       cause: error,
     });
   } finally {
@@ -144,7 +144,7 @@ async function deleteReview(id) {
     await client.query(sql, [id]);
   } catch (error) {
     client.release();
-    throw new Error(`adding service failed  - ${error.message}`);
+    throw new Error(`adding service failed  \n ${error}`);
   } finally {
     client.release();
   }

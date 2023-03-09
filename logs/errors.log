@@ -1,42 +1,37 @@
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 5:59:14 pm] Error: get service failed  
+ error: syntax error at or near "ORDER"
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 5:59:52 pm] Error: Release called on client which has already been released to the pool.
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:00:42 pm] Error: get service failed  
+ error: syntax error at or near "ORDER"
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:02:17 pm] Error: Release called on client which has already been released to the pool.
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:02:29 pm] Error: Release called on client which has already been released to the pool.
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:02:44 pm] Error: get service failed  
+ error: syntax error at or near "ORDER"
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:08:24 pm] Error: get service failed  
+ error: bind message supplies 2 parameters, but prepared statement "" requires 0
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:26:00 pm] Error: get service failed  
+ error: OFFSET must not be negative
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:26:34 pm] Error: Release called on client which has already been released to the pool.
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:28:22 pm] Error: get service failed  
+ error: OFFSET must not be negative
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:28:29 pm] Error: get service failed  
+ error: OFFSET must not be negative
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:54:50 pm] Error: Release called on client which has already been released to the pool.
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:57:12 pm] Error: get service failed  
+ error: column "id" does not exist
  ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
- ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
- ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
- ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
- ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
- ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
- ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
- ----------------------- 
- [March 9th 2023, 10:30:18 am] Error: adding service failed  - null value in column "service_desc" of relation "services" violates not-null constraint
+ [March 9th 2023, 6:58:14 pm] Error: get service failed  
+ error: invalid input syntax for type bigint: "NaN"
  ----------------------- 

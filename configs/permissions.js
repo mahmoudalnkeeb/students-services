@@ -1,0 +1,20 @@
+const permissionsSlugs = [
+  'SERVICE.CREATE',
+  'SERVICE.UPDATE',
+  'SERVICE.DELETE',
+  'SECTION.CREATE',
+  'SECTION.UPDATE',
+  'SECTION.DELETE',
+  'REVIEW.ACCEPT',
+  'REVIEW.UPDATE',
+  'REVIEW.DELETE',
+  'ORDER.GET',
+  'ORDER.CREATE',
+  'ORDER.UPDATE',
+  'ORDER.DELETE',
+  'LOGO.UPDATE',
+  'THEME.UPDATE',
+  'INFO.UPDATE',
+];
+
+module.exports = permissionsSlugs;

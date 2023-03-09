@@ -27,23 +27,23 @@ async function getSections() {
     return query.rows;
   } catch (error) {
     client.release();
-    throw new Error(`get section failed  - ${error.message}`, { cause: error });
+    throw new Error(`get section failed  \n ${error}`, { cause: error });
   } finally {
     client.release();
   }
 }
 
-async function getSectionsPagination(page, limit) {
+async function getSectionsPagination(page = 1, limit = 10) {
   let client = await pool.connect();
   try {
     let offset = (page - 1) * limit;
     let sql =
-      'SELECT section_id , section_name , section_desc , section_image FROM sections LIMIT $1 OFFSET $2 ORDER BY index ASC ';
+      'SELECT section_id , section_name , section_desc , section_image FROM sections ORDER BY index ASC LIMIT $1 OFFSET $2';
     let query = await client.query(sql, [limit, offset]);
     return query.rows;
   } catch (error) {
     client.release();
-    throw new Error(`get section failed  - ${error.message}`, { cause: error });
+    throw new Error(`get section failed  \n ${error}`, { cause: error });
   } finally {
     client.release();
   }
@@ -53,12 +53,12 @@ async function getOneSection(id) {
   let client = await pool.connect();
   try {
     let sql =
-      'SELECT section_id , section_name , section_desc , section_image WHERE id=$1';
+      'SELECT section_id , section_name , section_desc , section_image WHERE section_id=$1';
     let query = await client.query(sql, [id]);
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`get section failed  - ${error.message}`, { cause: error });
+    throw new Error(`get section failed  \n ${error}`, { cause: error });
   } finally {
     client.release();
   }
@@ -74,7 +74,7 @@ async function createSection(name, desc, imagePath = 'default') {
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`adding section failed  - ${error.message}`, {
+    throw new Error(`adding section failed  \n ${error}`, {
       cause: error,
     });
   } finally {
@@ -96,7 +96,7 @@ async function updateSection(id, name = null, desc = null, imagePath = null) {
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`updating section failed  - ${error.message}`, {
+    throw new Error(`updating section failed  \n ${error}`, {
       cause: error,
     });
   } finally {
@@ -112,7 +112,7 @@ async function updateIndex(index) {
     return query.rows[0];
   } catch (error) {
     client.release();
-    throw new Error(`updating section failed  - ${error.message}`, {
+    throw new Error(`updating section failed  \n ${error}`, {
       cause: error,
     });
   } finally {
@@ -126,10 +126,10 @@ async function deleteSection(id) {
     let sql =
       'DELETE FROM sections WHERE section_id=$1 RETURNING section_image ';
     let imagePath = await client.query(sql, [id]);
-    deleteFile(imagePath , 'sections');
+    deleteFile(imagePath, 'sections');
   } catch (error) {
     client.release();
-    throw new Error(`deleting section failed  - ${error.message}`, {
+    throw new Error(`deleting section failed  \n ${error}`, {
       cause: error,
     });
   } finally {

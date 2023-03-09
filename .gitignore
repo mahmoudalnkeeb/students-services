@@ -14,6 +14,7 @@ node_modules
 tempCp
 tempData.json
 fillTempData.js
+fill.sh
 
 #swagger
 docs.yml
