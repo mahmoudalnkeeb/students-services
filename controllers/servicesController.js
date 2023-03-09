@@ -76,6 +76,7 @@ async function createService(req, res, next) {
   try {
     let { name, desc, imagePath } = req.body;
     let service = await services.createService(name, desc, imagePath);
+    console.log(service);
     res.status(201).json(service);
   } catch (error) {
     next(error);

@@ -69,7 +69,7 @@ async function createSection(name, desc, imagePath = 'default') {
   try {
     let id = shortId.generate();
     let sql =
-      'INSERT INTO sections(section_id , section_name , section_desc , section_image) VALUES($1 , $2 , $3 , $4)';
+      'INSERT INTO sections(section_id , section_name , section_desc , section_image) VALUES($1 , $2 , $3 , $4) RETURNING section_id , section_name , section_desc , section_image';
     let query = await client.query(sql, [id, name, desc, imagePath]);
     return query.rows[0];
   } catch (error) {
@@ -107,7 +107,7 @@ async function updateSection(id, name = null, desc = null, imagePath = null) {
 async function updateIndex(index) {
   let client = await pool.connect();
   try {
-    let sql = 'UPDATE sections SET index=$1';
+    let sql = 'UPDATE sections SET index=$1 RETURNING index';
     let query = await client.query(sql, [index]);
     return query.rows[0];
   } catch (error) {
@@ -126,7 +126,7 @@ async function deleteSection(id) {
     let sql =
       'DELETE FROM sections WHERE section_id=$1 RETURNING section_image ';
     let imagePath = await client.query(sql, [id]);
-    deleteFile(imagePath);
+    deleteFile(imagePath , 'sections');
   } catch (error) {
     client.release();
     throw new Error(`deleting section failed  - ${error.message}`, {

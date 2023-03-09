@@ -8,7 +8,7 @@ let pool = new Pool({
   port: dbPort,
   database: dbName,
   max: 20,
-  idleTimeoutMillis: 1000,
+  idleTimeoutMillis: 5000,
   maxUses: 7500
 });
 

@@ -26,7 +26,6 @@ async function getServices() {
     let query = await client.query(sql);
     return query.rows;
   } catch (error) {
-    client.release();
     throw new Error(`get service failed  - ${error.message}`, { cause: error });
   } finally {
     client.release();
@@ -42,7 +41,6 @@ async function getServicesPagination(page = 0, limit = 10) {
     let query = await client.query(sql, [limit, offset]);
     return query.rows;
   } catch (error) {
-    client.release();
     throw new Error(`get service failed  - ${error.message}`, { cause: error });
   } finally {
     client.release();
@@ -57,28 +55,26 @@ async function getOneService(id) {
     let query = await client.query(sql, [id]);
     return query.rows[0];
   } catch (error) {
-    client.release();
     throw new Error(`get service failed  - ${error.message}`, { cause: error });
   } finally {
     client.release();
   }
 }
 
-async function createService(name, desc, imagePath = 'default') {
+async function createService(name, desc, imagePath) {
   let client = await pool.connect();
   try {
+    if (!imagePath || imagePath == '') imagePath = 'default';
     let id = shortId.generate();
     let sql =
-      'INSERT INTO services(service_id , service_name , service_desc , service_image) VALUES($1 , $2 , $3 , $4)';
+      'INSERT INTO services(service_id , service_name , service_desc , service_image) VALUES($1 , $2 , $3 , $4) RETURNING service_id , service_name , service_desc , service_image';
     let query = await client.query(sql, [id, name, desc, imagePath]);
     return query.rows[0];
   } catch (error) {
-    client.release();
     throw new Error(`adding service failed  - ${error.message}`, {
       cause: error,
     });
-  } 
-  finally {
+  } finally {
     client.release();
   }
 }
@@ -109,7 +105,6 @@ async function updateService(
     ]);
     return query.rows[0];
   } catch (error) {
-    client.release();
     throw new Error(`updating service failed  - ${error.message}`, {
       cause: error,
     });
@@ -121,11 +116,10 @@ async function updateService(
 async function updateIndex(index) {
   let client = await pool.connect();
   try {
-    let sql = 'UPDATE services SET index=$1';
+    let sql = 'UPDATE services SET index=$1 RETURNING index';
     let query = await client.query(sql, [index]);
     return query.rows[0];
   } catch (error) {
-    client.release();
     throw new Error(`updating service failed  - ${error.message}`, {
       cause: error,
     });
@@ -140,9 +134,8 @@ async function deleteService(id) {
     let sql =
       'DELETE FROM services WHERE service_id=$1 RETURNING service_image ';
     let imagePath = await client.query(sql, [id]);
-    deleteFile(imagePath);
+    deleteFile(imagePath, 'services');
   } catch (error) {
-    client.release();
     throw new Error(`deleting service failed  - ${error.message}`, {
       cause: error,
     });

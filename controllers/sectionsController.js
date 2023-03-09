@@ -74,6 +74,7 @@ async function createSection(req, res, next) {
   try {
     let { name, desc, imagePath } = req.body;
     let section = await sections.createSection(name, desc, imagePath);
+    console.log(section);
     res.status(201).json(section);
   } catch (error) {
     next(error);

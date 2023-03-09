@@ -4,12 +4,13 @@ const cors = require('cors');
 const router = require('./routes');
 const env = require('./configs/env');
 const app = express();
+const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const fs = require('fs');
 const port = env.port;
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(cors({ origin: '*' }));
 app.use(
   morgan('common', {
