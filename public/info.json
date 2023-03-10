@@ -1,13 +1,50 @@
 {
-    "contactInfo": {
-        "email": "najhedu@gmail.com",
-        "phone": "+9660597766598"
-    },
-    "socials": {
-        "facebook": "https://www.facebook.com/alnajhedu",
-        "instagram": "https://www.instagram.com/alnajhedu/",
-        "twitter": "https://twitter.com/alnajhedu",
-        "snapchat": "https://www.snapchat.com/add/alnajhedu",
-        "whatsapp": "https://wa.me/966599766598"
-    }
+    "contactInfo": [
+        {
+            "name": "email",
+            "title": "البريد الالكتروني",
+            "value": "najhedu@gmail.com",
+            "icon": "fi fi-sr-envelope",
+            "url": "mailto:najhedu@gmail.com",
+            "backgroundColor": "#ff6d6b"
+        },
+        {
+            "name": "phone",
+            "title": "رقم الهاتف",
+            "value": "+966599766598",
+            "icon": "fi fi-sr-phone-call",
+            "url": "tel:+966599766598",
+            "backgroundColor": "#3792ff"
+        },
+        {
+            "name": "whatsapp",
+            "title": "واتس اب",
+            "value": "wa.me/966599766598",
+            "icon": "fi fi-brands-whatsapp",
+            "url": "https://wa.me/966599766598",
+            "backgroundColor": "#42CBA5"
+        }
+    ],
+    "socials": [
+        {
+            "name": "facebook",
+            "value": "https://www.facebook.com/alnajhedu"
+        },
+        {
+            "name": "instagram",
+            "value": "https://www.instagram.com/alnajhedu/"
+        },
+        {
+            "name": "twitter",
+            "value": "https://twitter.com/alnajhedu"
+        },
+        {
+            "name": "snapchat",
+            "value": "https://www.snapchat.com/add/alnajhedu"
+        },
+        {
+            "name": "whatsapp",
+            "value": "https://wa.me/966599766598"
+        }
+    ]
 }

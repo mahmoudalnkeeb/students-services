@@ -20,9 +20,35 @@ function getColors() {
   }
 }
 
-function getInfoJson() {
+function getContacts() {
   try {
-    return JSON.parse(fs.readFileSync(INFO_PATH, 'utf-8'));
+    return JSON.parse(fs.readFileSync(INFO_PATH, 'utf-8')).contactInfo;
+  } catch (error) {
+    throw error;
+  }
+}
+function getContactByName(name) {
+  try {
+    return JSON.parse(fs.readFileSync(INFO_PATH, 'utf-8')).contactInfo.filter(
+      (contact) => contact.name == name
+    );
+  } catch (error) {
+    throw error;
+  }
+}
+
+function getSocials() {
+  try {
+    return JSON.parse(fs.readFileSync(INFO_PATH, 'utf-8')).socials;
+  } catch (error) {
+    throw error;
+  }
+}
+function getSocialByName(name) {
+  try {
+    return JSON.parse(fs.readFileSync(INFO_PATH, 'utf-8')).socials.filter(
+      (social) => social.name == name
+    );
   } catch (error) {
     throw error;
   }
@@ -31,7 +57,11 @@ function getInfoJson() {
 function changeContactInfo(name, value) {
   try {
     let info = JSON.parse(fs.readFileSync(INFO_PATH, 'utf-8'));
-    info.contactInfo[name] = value;
+    info.contactInfo.map((contact) => {
+      if (contact.name == name) {
+        contact.value = value;
+      }
+    });
     fs.writeFileSync(INFO_PATH, `${info}`);
     return info.contactInfo;
   } catch (error) {
@@ -41,7 +71,11 @@ function changeContactInfo(name, value) {
 function changeSocialInfo(name, value) {
   try {
     let info = JSON.parse(fs.readFileSync(INFO_PATH, 'utf-8'));
-    info.socials[name] = value;
+    info.socials.map((social) => {
+      if (social.name == name) {
+        social.value = value;
+      }
+    });
     fs.writeFileSync(INFO_PATH, `${info}`);
     return info.socials;
   } catch (error) {
@@ -52,7 +86,10 @@ function changeSocialInfo(name, value) {
 module.exports = {
   changeColor,
   getColors,
-  getInfoJson,
+  getContacts,
+  getSocials,
+  getContactByName,
+  getSocialByName,
   changeContactInfo,
   changeSocialInfo,
 };

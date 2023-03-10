@@ -26,7 +26,6 @@ async function getSections() {
     let query = await client.query(sql);
     return query.rows;
   } catch (error) {
-    client.release();
     throw new Error(`get section failed  \n ${error}`, { cause: error });
   } finally {
     client.release();
@@ -42,7 +41,6 @@ async function getSectionsPagination(page = 1, limit = 10) {
     let query = await client.query(sql, [limit, offset]);
     return query.rows;
   } catch (error) {
-    client.release();
     throw new Error(`get section failed  \n ${error}`, { cause: error });
   } finally {
     client.release();
@@ -57,7 +55,6 @@ async function getOneSection(id) {
     let query = await client.query(sql, [id]);
     return query.rows[0];
   } catch (error) {
-    client.release();
     throw new Error(`get section failed  \n ${error}`, { cause: error });
   } finally {
     client.release();
@@ -73,7 +70,6 @@ async function createSection(name, desc, imagePath = 'default') {
     let query = await client.query(sql, [id, name, desc, imagePath]);
     return query.rows[0];
   } catch (error) {
-    client.release();
     throw new Error(`adding section failed  \n ${error}`, {
       cause: error,
     });
@@ -95,7 +91,6 @@ async function updateSection(id, name = null, desc = null, imagePath = null) {
     let query = await client.query(sql, [id, name, desc, imagePath]);
     return query.rows[0];
   } catch (error) {
-    client.release();
     throw new Error(`updating section failed  \n ${error}`, {
       cause: error,
     });
@@ -111,7 +106,6 @@ async function updateIndex(index) {
     let query = await client.query(sql, [index]);
     return query.rows[0];
   } catch (error) {
-    client.release();
     throw new Error(`updating section failed  \n ${error}`, {
       cause: error,
     });
@@ -128,7 +122,6 @@ async function deleteSection(id) {
     let imagePath = await client.query(sql, [id]);
     deleteFile(imagePath, 'sections');
   } catch (error) {
-    client.release();
     throw new Error(`deleting section failed  \n ${error}`, {
       cause: error,
     });

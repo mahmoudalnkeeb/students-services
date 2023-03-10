@@ -30,6 +30,7 @@ async function migrateTableUp(table) {
     console.info(query);
     return { result: query, client };
   } catch (error) {
+    console.log(error);
     client.release();
     throw new Error(`adding table failed  - ${error.message}`);
   } finally {

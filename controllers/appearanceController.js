@@ -1,11 +1,12 @@
 const { request, response } = require('express');
 const { LOGO_PATH } = require('../configs/constants');
 const {
-  getInfoJson,
   changeContactInfo,
   changeSocialInfo,
   getColors,
   changeColor,
+  getContacts,
+  getSocials,
 } = require('../utils/appearanceUtils');
 
 /**
@@ -46,9 +47,59 @@ function changeLogo(req, res, next) {
  * @param {response} res
  * @param {*} next
  */
-function getInfo(req, res, next) {
+function getContactsInfo(req, res, next) {
   try {
-    let info = getInfoJson();
+    let info = getContacts();
+    res.status(200).json(info);
+  } catch (error) {
+    next(
+      new Error(`error getting info file ${error.message}`, { cause: error })
+    );
+  }
+}
+/**
+ *
+ * @param {request} req
+ * @param {response} res
+ * @param {*} next
+ */
+function getSocialByName(req, res, next) {
+  try {
+    let {name} = req.query
+    if(!name) return res.status(40)
+    let info = getSocialByName(name);
+    res.status(200).json(info);
+  } catch (error) {
+    next(
+      new Error(`error getting info file ${error.message}`, { cause: error })
+    );
+  }
+}
+/**
+ *
+ * @param {request} req
+ * @param {response} res
+ * @param {*} next
+ */
+function getContactByName(req, res, next) {
+  try {
+    let info = getContactByName(req.query.name);
+    res.status(200).json(info);
+  } catch (error) {
+    next(
+      new Error(`error getting info file ${error.message}`, { cause: error })
+    );
+  }
+}
+/**
+ *
+ * @param {request} req
+ * @param {response} res
+ * @param {*} next
+ */
+function getSocialInfo(req, res, next) {
+  try {
+    let info = getSocials();
     res.status(200).json(info);
   } catch (error) {
     next(
@@ -106,7 +157,8 @@ function changeThemeColor(req, res, next) {
 module.exports = {
   getLogo,
   changeLogo,
-  getInfo,
+  getContactsInfo,
+  getSocialInfo,
   changeContact,
   changeSocial,
   getTheme,

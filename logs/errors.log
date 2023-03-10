@@ -35,3 +35,140 @@
  [March 9th 2023, 6:58:14 pm] Error: get service failed  
  error: invalid input syntax for type bigint: "NaN"
  ----------------------- 
+ [March 9th 2023, 10:53:58 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:57:02 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:57:04 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:57:08 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:57:18 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:57:19 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:57:21 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:57:25 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:57:34 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:58:57 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:59:00 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 10:59:04 pm] Release called on client which has already been released to the pool. 
+ error stack 
+  : Error: Release called on client which has already been released to the pool.
+    at throwOnDoubleRelease (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:27:9)
+    at Client.release (E:\1PROJECTS\Work\najeh-api\node_modules\pg-pool\index.js:318:9)
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:48:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 11:00:45 pm] get section failed  
+ error: invalid input syntax for type bigint: "NaN" 
+ error stack 
+  : Error: get section failed  
+ error: invalid input syntax for type bigint: "NaN"
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:44:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 11:05:33 pm] get section failed  
+ error: invalid input syntax for type bigint: "NaN" 
+ error stack 
+  : Error: get section failed  
+ error: invalid input syntax for type bigint: "NaN"
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:44:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 11:05:36 pm] get section failed  
+ error: invalid input syntax for type bigint: "NaN" 
+ error stack 
+  : Error: get section failed  
+ error: invalid input syntax for type bigint: "NaN"
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:44:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 11:05:40 pm] get section failed  
+ error: invalid input syntax for type bigint: "NaN" 
+ error stack 
+  : Error: get section failed  
+ error: invalid input syntax for type bigint: "NaN"
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:44:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ ----------------------- [March 9th 2023, 11:06:04 pm] get section failed  
+ error: invalid input syntax for type bigint: "NaN" 
+ error stack 
+  : Error: get section failed  
+ error: invalid input syntax for type bigint: "NaN"
+    at Object.getSectionsPagination (E:\1PROJECTS\Work\najeh-api\models\Section.js:44:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async getSectionsPagination (E:\1PROJECTS\Work\najeh-api\controllers\sectionsController.js:42:23) 
+ -----------------------

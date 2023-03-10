@@ -5,7 +5,8 @@ const uploadFile = require('../utils/uploadFile');
 router
   .get('/logo', appearanceController.getLogo)
   .get('/theme', appearanceController.getTheme)
-  .get('/info', appearanceController.getInfo);
+  .get('/contacts', appearanceController.getContactsInfo)
+  .get('/socials', appearanceController.getSocialInfo);
 
 // CONTROL PANEL ONLY
 router.post(
