@@ -11,7 +11,7 @@ const port = env.port;
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: env.origins }));
 app.use(
   morgan('common', {
     stream: fs.createWriteStream('./logs/requests.log', { flags: 'a' }),

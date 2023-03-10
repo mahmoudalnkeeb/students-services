@@ -9,6 +9,7 @@ let env =
         dbPass: process.env.DB_PASS_DEV,
         dbHost: process.env.DB_HOST_DEV,
         dbPort: process.env.DB_PORT_DEV,
+        origins: process.env.CORS_ORIGINS_DEV
       }
     : {
         port: process.env.PORT,
@@ -17,6 +18,7 @@ let env =
         dbPass: process.env.DB_PASS,
         dbHost: process.env.DB_HOST,
         dbPort: process.env.DB_PORT,
+        origins: process.env.CORS_ORIGINS
       };
 
 module.exports = env;
