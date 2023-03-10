@@ -1,4 +1,4 @@
-const sharp = require('sharp');
+// const sharp = require('sharp'); 
 const {
   SERVICE_IMAGE_W,
   SERVICE_IMAGE_H,
@@ -17,12 +17,12 @@ async function serviceImage(image) {
       path = `${SECTIONS_IMAGES_PATH}/${image.filename.split('.')[0]}.webp`;
     else path = `${IMAGES_PATH}/${image.filename.split('.')[0]}.webp`;
 
-    await sharp(image.path)
-      .resize(SERVICE_IMAGE_W, SERVICE_IMAGE_H)
-      .webp({ quality: 100 })
-      .toFile(path);
+    // await sharp(image.path)
+    //   .resize(SERVICE_IMAGE_W, SERVICE_IMAGE_H)
+    //   .webp({ quality: 100 })
+    //   .toFile(path);
     deleteFile(image.path);
-    return `${image.filename.split('.')[0]}.webp`;
+    return filename
   } catch (error) {
     throw new Error(`error occured when intializing image ${error.message}`, {
       cause: error,

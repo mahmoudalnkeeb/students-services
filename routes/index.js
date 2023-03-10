@@ -16,8 +16,7 @@ const path = require('path');
 // upload route
 router.post('/upload', uploadFile.any(), async (req, res) => {
   try {
-    let filename = await serviceImage(req.files[0]);
-    res.status(201).json({ filename });
+    res.status(201).json({ filename: req.files[0].filename });
   } catch (error) {
     next(
       new Error(`error occurred when saving file - ${error.message}`, {

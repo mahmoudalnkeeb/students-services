@@ -3,11 +3,18 @@ const fs = require('fs');
 const path = require('path');
 const { generate } = require('shortid');
 const { extension } = require('mime-types');
-const { LOGO_PATH } = require('../configs/constants');
+const {
+  LOGO_PATH,
+  SECTIONS_IMAGES_PATH,
+  SERVICES_IMAGES_PATH,
+} = require('../configs/constants');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.resolve('public/images'));
+    if (file.fieldname == 'section')
+      return cb(null, path.resolve(SECTIONS_IMAGES_PATH));
+    if (file.fieldname == 'service')
+      return cb(null, path.resolve(SERVICES_IMAGES_PATH));
   },
   filename: function (req, file, cb) {
     if (file.fieldname == 'logo') {
