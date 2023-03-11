@@ -1,10 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const { jwtSecert, rounds } = require('../configs/env');
+const { jwtSecret, rounds } = require('../configs/env');
 
-function createJwt(payload) {
-  let secert = hash(jwtSecert);
-  return { token: jwt.sign(payload, secert.hashed), secertSalt: secert.salt };
+function createJwt(payload, exp) {
+  return { token: jwt.sign(payload, jwtSecret, { expiresIn: exp }) };
 }
 
 function hash(data) {
@@ -21,9 +20,9 @@ function decodeJwt(token) {
   return jwt.decode(token);
 }
 
-function verfiyJwt(token, secert, salt, hash) {
-  if (compare(secert + salt, hash)) return jwt.verify(token);
-  return false;
+function verfiyJwt(token) {
+  if (!jwt.verify(token)) return false;
+  return jwt.verify(token);
 }
 
 module.exports = { createJwt, hash, compare, decodeJwt, verfiyJwt };

@@ -46,5 +46,7 @@
             "name": "whatsapp",
             "value": "https://wa.me/966599766598"
         }
-    ]
+    ],
+    "logo-path": "https://firebasestorage.googleapis.com/v0/b/najh-740f9.appspot.com/o/images%2Flogo.png?alt=media&token=747363fd-e381-4595-9d83-a76a6cc60d10",
+    "default-image": "https://firebasestorage.googleapis.com/v0/b/najh-740f9.appspot.com/o/images%2FArtboard%201.jpg?alt=media&token=b6d37531-b9a6-409a-9afa-713d18eef404"
 }

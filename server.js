@@ -18,7 +18,7 @@ app.use(
   })
 );
 app.use(morgan('dev'));
-app.use('/api', router);
+app.use(router);
 app.use(errHandler);
 
 app.listen(port, () => console.log(`app running on port ${port}`));

@@ -68,7 +68,6 @@ const migrations = {
       hashed_pass TEXT NOT NULL,
       salt TEXT NOT NULL,
       access_token TEXT UNIQUE,
-      token_secret TEXT UNIQUE,
       created_at TIMESTAMP NOT NULL DEFAULT NOW(),
       updated_at TIMESTAMP NOT NULL DEFAULT NOW()
   );`,

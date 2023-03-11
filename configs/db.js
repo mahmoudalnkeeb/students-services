@@ -1,5 +1,5 @@
 const { Pool } = require('pg');
-const { dbUser, dbPass, dbHost, dbPort, dbName } = require('./env');
+const { dbUser, dbPass, dbHost, dbPort, dbName, ssl } = require('./env');
 
 let pool = new Pool({
   user: dbUser,
@@ -9,7 +9,9 @@ let pool = new Pool({
   database: dbName,
   max: 20,
   idleTimeoutMillis: 10000,
-  maxUses: 7500
+  maxUses: 7500,
+  ssl: ssl,
 });
 
+console.log(ssl);
 module.exports = pool;

@@ -1,5 +1,4 @@
 const { request, response } = require('express');
-const { LOGO_PATH } = require('../configs/constants');
 const {
   changeContactInfo,
   changeSocialInfo,
@@ -8,6 +7,9 @@ const {
   getContacts,
   getSocials,
 } = require('../utils/appearanceUtils');
+const uploadFile = require('../utils/firebase');
+const fs = require('fs');
+const { INFO_PATH } = require('../configs/constants');
 
 /**
  *
@@ -17,7 +19,8 @@ const {
  */
 function getLogo(req, res, next) {
   try {
-    res.status(200).sendFile(LOGO_PATH);
+    let info = JSON.parse(fs.readFileSync(INFO_PATH, 'utf-8'));
+    res.redirect(info['logo-path']);
   } catch (error) {
     next(
       new Error(`error getting logo file ${error.message}`, { cause: error })
@@ -33,7 +36,11 @@ function getLogo(req, res, next) {
  */
 function changeLogo(req, res, next) {
   try {
-    res.status(200).sendFile(req.file.path);
+    let logo_path = uploadFile(req.file);
+    let info = JSON.parse(fs.readFileSync(INFO_PATH, 'utf-8'));
+    info['logo-path'] = logo_path;
+    fs.writeFileSync(INFO_PATH, `${JSON.stringify(info, null, 4)}`);
+    res.status(200).send(logo_path);
   } catch (error) {
     next(
       new Error(`error while changing logo ${error.message}`, { cause: error })
@@ -65,8 +72,8 @@ function getContactsInfo(req, res, next) {
  */
 function getSocialByName(req, res, next) {
   try {
-    let {name} = req.query
-    if(!name) return res.status(40)
+    let { name } = req.query;
+    if (!name) return res.status(40);
     let info = getSocialByName(name);
     res.status(200).json(info);
   } catch (error) {

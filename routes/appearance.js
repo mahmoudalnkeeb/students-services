@@ -1,6 +1,7 @@
 const router = require('express').Router();
+const multer = require('multer');
 const appearanceController = require('../controllers/appearanceController');
-const uploadFile = require('../utils/uploadFile');
+const upload = multer()
 
 router
   .get('/logo', appearanceController.getLogo)
@@ -11,7 +12,7 @@ router
 // CONTROL PANEL ONLY
 router.post(
   '/logo',
-  uploadFile.single('logo'),
+  upload.single('logo'),
   appearanceController.changeLogo
 );
 

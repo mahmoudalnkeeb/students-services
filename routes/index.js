@@ -4,45 +4,20 @@ const servicesRouter = require('./services');
 const sectionsRouter = require('./sections');
 const reviewsRouter = require('./reviews');
 const ordersRouter = require('./orders');
-const uploadFile = require('../utils/uploadFile');
-const serviceImage = require('../utils/sharp');
-const fs = require('fs');
-const {
-  SECTIONS_IMAGES_PATH,
-  SERVICES_IMAGES_PATH,
-} = require('../configs/constants');
-const path = require('path');
+const multer = require('multer');
+const uploadFile = require('../utils/firebase');
+const upload = multer();
+
+// test
+router.get('/test', (req, res) => res.status(200).json({ status: 'working' }));
 
 // upload route
-router.post('/upload', uploadFile.any(), async (req, res) => {
+router.post('/upload', upload.single('file'), async (req, res, next) => {
   try {
-    res.status(201).json({ filename: req.files[0].filename });
+    let url = await uploadFile(req.file);
+    res.status(200).json({url});
   } catch (error) {
-    next(
-      new Error(`error occurred when saving file - ${error.message}`, {
-        cause: error,
-      })
-    );
-  }
-});
-
-router.get('/image', (req, res, next) => {
-  try {
-    let { image, folder } = req.query;
-    let folders = {
-      sections: SECTIONS_IMAGES_PATH,
-      services: SERVICES_IMAGES_PATH,
-    };
-    let imagePath = path.resolve(path.join(folders[folder], image));
-    let found = fs.existsSync(imagePath);
-    if (!found) return res.status(404).send('file not found');
-    res.status(200).sendFile(imagePath);
-  } catch (error) {
-    next(
-      new Error(`error occurred when getting image file - ${error.message}`, {
-        cause: error,
-      })
-    );
+    next(error);
   }
 });
 
