@@ -13,5 +13,4 @@ let pool = new Pool({
   ssl: ssl,
 });
 
-console.log(ssl);
 module.exports = pool;
